@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t 9123122/node .
   - docker images 9123122/node
+
+before_deploy:
+  - docker login -u 9123122 -p @D0cker007
+
+deploy:
+  provider: script
+  script: docker push 9123122/node
+  on:
+    branch: master
